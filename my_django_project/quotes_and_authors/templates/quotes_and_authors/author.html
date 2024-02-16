@@ -1,0 +1,17 @@
+{% extends "quotes_and_authors/base.html" %}
+
+{% load pars_born_date %}
+
+{% block content %}
+
+<h1 class="fullname">{{author.fullname}}</h1>
+<p><b>Born:</b>
+    <span class="born_date">{{author.born_date|pars_born_date}}</span>
+    <span class="born_location">{{author.born_location}}</span>
+</p>
+<p><b>Description:</b></p>
+<div style="text-align: justify;">
+    {{author.description}}
+</div>
+
+{% endblock %}

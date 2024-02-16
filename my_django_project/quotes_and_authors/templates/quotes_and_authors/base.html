@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Quote</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quotes_and_authors/main.css' %}">
+</head>
+<body>
+<main class="container">
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid">
+        <ul>
+            <li><a href="/" role="button"> Main page </a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'quotes_and_authors:create_author' %}" role="button"> Create author </a></li>
+            <li><a href="{% url 'quotes_and_authors:create_quote' %}" role="button"> Create quote </a></li>
+            {% endif %}
+        </ul>
+        {% if user.is_authenticated %}
+        <ul>
+            <li>Welcome <b>{{user.username}}!</b></li>
+            <li><a href="{% url 'users:logout' %}" role="button">Logout</a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{% url 'users:singup' %}" role="button">Sing up</a></li>
+            <li><a href="{% url 'users:login' %}" role="button">Login</a></li>
+        </ul>
+        {% endif %}
+    </nav>
+    {% block content %} {% endblock %}
+</main>
+</body>
+</html>

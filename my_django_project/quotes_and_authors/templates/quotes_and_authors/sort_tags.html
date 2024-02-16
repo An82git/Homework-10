@@ -1,0 +1,29 @@
+{% extends "quotes_and_authors/base.html" %} 
+
+{% load get_tags %}
+{% load top_tags %}
+
+{% block content %}
+
+<div>
+    <div style="margin-bottom: 35px">
+        <h4>Top Ten tags: </h4>
+        {% for tag in count_tags|top_tags %}
+        <a href="/sort/tag/{{tag.name}}" style="padding: 2px 5px; color: white; border-radius: 5px; font-size: small; background-color: #0172ad; text-decoration: none">{{tag.name}}</a>
+        {% endfor %}
+    </div>
+
+    {% for quote in quotes %}
+    <div style="padding: 10px; margin-bottom: 30px; border: 1px solid #4f4f4f; border-radius: 5px; box-shadow: 2px 2px 3px #494949;"> 
+        <p><span style="text-align: justify">{{quote.quote}}</span></p>
+        <p><span>by<a href="/author/{{quote.author.fullname}}" style="text-decoration: none"> {{quote.author.fullname}}</a></span></p>
+        <p><span>Tags:
+            {% for tag in quote.tags|get_tags %}
+            <a href="/sort/tag/{{tag.name}}" style="padding: 2px 5px; color: white; border-radius: 5px; font-size: small; background-color: #0172ad; text-decoration: none">{{tag.name}}</a>
+            {% endfor %}
+        </span></p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
