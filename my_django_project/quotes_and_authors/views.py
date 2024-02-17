@@ -54,9 +54,6 @@ def create_quote(request):
             for tag in choice_tags.iterator():
                 new_note.tags.add(tag)
 
-            choice_author = Authors.objects.filter(fullname=request.POST.get('authors'))
-            form.author.add(choice_author[0])
-
             return redirect(to='quotes_and_authors:main')
         else:
             return render(request, 'quotes_and_authors/create_quote.html', {"tags": tags, "authors": authors, 'form': form})

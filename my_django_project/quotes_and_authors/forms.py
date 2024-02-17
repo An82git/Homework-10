@@ -19,5 +19,5 @@ class QuoteForm(ModelForm):
 
     class Meta:
         model = Quotes
-        fields = ['quote']
-        exclude = ['tags', 'author']
+        fields = ['quote', 'author']
+        exclude = ['tags']

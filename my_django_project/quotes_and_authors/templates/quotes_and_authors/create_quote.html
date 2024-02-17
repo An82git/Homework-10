@@ -2,24 +2,25 @@
 
 {% block content %}
 
-<form method="POST" action="{% url 'quotes_and_authors:create_quote' %}">
+<form method="POST" action="{% url 'quotes_and_authors:create_quote' %}" style="padding: 10px">
     {% csrf_token %}
-    <div style="padding: 10px">
+    <div>
         <label> Quote:
             {{ form.quote }}
         </label>
         <span>{{ form.errors.quote }}</span>
     </div>
-    <div style="padding: 10px">
-        <label> Select author:
-            <select name="authors" required>
+    <div>
+        <label for="id_author"> Select author:
+            <select name="author" required id="id_author">
+                <option value selected>---------</option>
                 {% for author in authors %}
-                <option value="{{author.fullname}}">{{author.fullname}}</option>
+                <option value="{{author.id}}">{{author.fullname}}</option>
                 {% endfor %}
             </select>
         </label>
     </div>
-    <div style="padding: 10px">
+    <div>
         <label> Select tags:
             <select name="tags" multiple="multiple" required>
                 {% for tag in tags %}
